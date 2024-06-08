@@ -1,4 +1,4 @@
-ef letterCombinations(digits):
+def letterCombinations(digits):
     if not digits:
         return []
     phone = {
