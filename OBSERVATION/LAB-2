@@ -1,23 +1,16 @@
-#include <iostream>
-#include <cmath>
-#include <cstring>
-using namespace std;
-int power(int num, int p) {
-    if (p == 0) return 1;
-    return num * power(num, p - 1);
-}
-bool isArmstrong(int num, int len, int temp) {
-    if (temp == 0) return 0;
-    return power(temp % 10, len) + isArmstrong(num, len, temp / 10) == num;
-}
-int main() {
-    int num;
-    cout << "Enter a number: ";
-    cin >> num;
-    int len = to_string(num).length();
-    if (isArmstrong(num, len, num))
-        cout << num << " is an Armstrong number.";
-    else
-        cout << num << " is not an Armstrong number.";
-    return 0;
-}
+def power(x, y):
+    return 1 if y == 0 else x * power(x, y - 1)
+
+def is_armstrong_recursive(n, num_digits):
+    return 0 if n == 0 else power(n % 10, num_digits) + is_armstrong_recursive(n // 10, num_digits)
+
+def is_armstrong(number):
+    num_digits = len(str(number))
+    return number == is_armstrong_recursive(number, num_digits)
+
+# Input from the user
+number = int(input("Enter a number: "))
+if is_armstrong(number):
+    print(f"{number} is an Armstrong number.")
+else:
+    print(f"{number} is not an Armstrong number.")
