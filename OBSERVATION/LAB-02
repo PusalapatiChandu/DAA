@@ -1,6 +1,5 @@
 def power(x, y):
     return 1 if y == 0 else x * power(x, y - 1)
-
 def is_armstrong_recursive(n, num_digits):
     return 0 if n == 0 else power(n % 10, num_digits) + is_armstrong_recursive(n // 10, num_digits)
 
