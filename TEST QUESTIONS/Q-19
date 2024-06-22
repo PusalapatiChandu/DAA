@@ -1,0 +1,21 @@
+def intersection(nums1, nums2):
+    # Convert lists to sets to remove duplicates and enable fast membership checking
+    set1 = set(nums1)
+    set2 = set(nums2)
+    
+    # Find the intersection of the two sets
+    result_set = set1 & set2
+    
+    # Convert the result set back to a list
+    result = list(result_set)
+    
+    return result
+
+# Example usage:
+nums1 = [1, 2, 2, 1]
+nums2 = [2, 2]
+print(intersection(nums1, nums2))  # Output: [2]
+
+nums1 = [4, 9, 5]
+nums2 = [9, 4, 9, 8, 4]
+print(intersection(nums1, nums2))  # Output: [9, 4]
