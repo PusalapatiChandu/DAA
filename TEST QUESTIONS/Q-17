@@ -1,0 +1,29 @@
+def setZeroes(matrix):
+    m = len(matrix)
+    n = len(matrix[0])
+    
+    # Arrays to track which rows and columns to zero out
+    zero_rows = set()
+    zero_cols = set()
+    
+    # Traverse the matrix and mark the zero rows and columns
+    for i in range(m):
+        for j in range(n):
+            if matrix[i][j] == 0:
+                zero_rows.add(i)
+                zero_cols.add(j)
+    
+    # Iterate through the matrix again and set zeros
+    for i in range(m):
+        for j in range(n):
+            if i in zero_rows or j in zero_cols:
+                matrix[i][j] = 0
+
+# Example usage:
+matrix = [
+    [1, 1, 1],
+    [1, 0, 1],
+    [1, 1, 1]
+]
+setZeroes(matrix)
+print(matrix)  # Output: [[1, 0, 1], [0, 0, 0], [1, 0, 1]]
