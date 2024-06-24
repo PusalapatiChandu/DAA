@@ -1,0 +1,12 @@
+def minimumLength(nums):
+    stack = [] 
+    for num in nums:
+        if stack and stack[-1] < num:
+            stack.pop()  
+        else:
+            stack.append(num) 
+    return len(stack)
+
+# Example usage:
+nums = [1, 2, 3, 4]
+print(minimumLength(nums))  # Output: 0
