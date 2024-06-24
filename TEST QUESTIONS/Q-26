@@ -1,0 +1,18 @@
+def longestNiceSubstring(s):
+    def isNice(sub):
+        set_chars = set(sub)
+        for c in set_chars:
+            if c.swapcase() not in set_chars:
+                return False
+        return True
+    if len(s) < 2:
+        return ""
+    for i in range(len(s)):
+        if s[i].swapcase() not in s:
+            left = longestNiceSubstring(s[:i])
+            right = longestNiceSubstring(s[i+1:])
+            return max(left, right, key=len) 
+    return s
+# Example usage:
+s = "YazaAay"
+print(longestNiceSubstring(s))  # Output: "aAa"
