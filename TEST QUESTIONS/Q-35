@@ -1,0 +1,22 @@
+def minOperations(arr1, arr2):
+    n1, n2 = len(arr1), len(arr2)
+    operations = 0
+    
+    for i in range(1, n1):
+        if arr1[i] <= arr1[i-1]:
+            found = False
+            for j in range(n2):
+                if arr2[j] > arr1[i-1]:
+                    arr1[i] = arr2[j]
+                    found = True
+                    operations += 1
+                    break
+            if not found:
+                return -1
+    
+    return operations
+
+# Example usage:
+arr1 = [1, 5, 3, 6, 7]
+arr2 = [1, 3, 2, 4]
+print(minOperations(arr1, arr2))  # Output: 1
