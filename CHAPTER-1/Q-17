@@ -1,0 +1,21 @@
+def champagneTower(poured, query_row, query_glass):
+    # Initialize the pyramid with 0 champagne in each glass
+    pyramid = [[0] * (i + 1) for i in range(101)]
+    
+    # Pour the champagne into the top glass
+    pyramid[0][0] = poured
+    
+    # Simulate the champagne pouring process
+    for r in range(100):
+        for c in range(r + 1):
+            if pyramid[r][c] > 1:
+                excess = (pyramid[r][c] - 1) / 2
+                pyramid[r + 1][c] += excess
+                pyramid[r + 1][c + 1] += excess
+    
+    # Return the amount of champagne in the specified glass
+    return min(1, pyramid[query_row][query_glass])
+
+# Test Cases
+print(champagneTower(1, 1, 1))  # Expected Output: 0.00000
+print(champagneTower(2, 1, 1))  # Expected Output: 0.50000
