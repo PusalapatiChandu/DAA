@@ -1,0 +1,26 @@
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        swapped = False
+        for j in range(0, n - i - 1):
+            if arr[j] > arr[j + 1]:
+                # Swap if the element found is greater than the next element
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+        # If no two elements were swapped by the inner loop, then the list is sorted
+        if not swapped:
+            break
+    return arr
+
+# Test cases
+test_cases = [
+    [64, 25, 12, 22, 11],  # Expected Output: [11, 12, 22, 25, 64]
+    [29, 10, 14, 37, 13],  # Expected Output: [10, 13, 14, 29, 37]
+    [3, 5, 2, 1, 4],       # Expected Output: [1, 2, 3, 4, 5]
+    [1, 2, 3, 4, 5],       # Expected Output: [1, 2, 3, 4, 5]
+    [5, 4, 3, 2, 1]        # Expected Output: [1, 2, 3, 4, 5]
+]
+
+# Printing results for each test case
+for i, test_case in enumerate(test_cases):
+    print(f"Input: {test_case}\nSorted Output: {bubble_sort(test_case[:])}\n")
