@@ -1,0 +1,16 @@
+def findKthPositive(arr, k):
+    # The current natural number to check
+    current = 1
+    # Counter for the number of missing positive integers found
+    missing_count = 0
+    
+    while True:
+        if current not in arr:
+            missing_count += 1
+            if missing_count == k:
+                return current
+        current += 1
+
+# Test cases
+print(findKthPositive([2, 3, 4, 7, 11], 5))  # Expected Output: 9
+print(findKthPositive([1, 2, 3, 4], 2))       # Expected Output: 6
