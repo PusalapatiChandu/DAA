@@ -1,0 +1,22 @@
+def selection_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        # Find the minimum element in the remaining unsorted part
+        min_index = i
+        for j in range(i+1, n):
+            if arr[j] < arr[min_index]:
+                min_index = j
+        # Swap the found minimum element with the first element of the unsorted part
+        arr[i], arr[min_index] = arr[min_index], arr[i]
+    return arr
+
+# Test cases
+test_cases = [
+    [5, 2, 9, 1, 5, 6],  # Expected Output: [1, 2, 5, 5, 6, 9]
+    [10, 8, 6, 4, 2],    # Expected Output: [2, 4, 6, 8, 10]
+    [1, 2, 3, 4, 5]      # Expected Output: [1, 2, 3, 4, 5]
+]
+
+# Printing results for each test case
+for i, test_case in enumerate(test_cases):
+    print(f"Input: {test_case}\nSorted Output: {selection_sort(test_case[:])}\n")
