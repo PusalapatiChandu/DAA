@@ -1,0 +1,43 @@
+def gameOfLife(board):
+    if not board or not board[0]:
+        return
+    
+    m, n = len(board), len(board[0])
+    
+    # Directions for 8 neighbors
+    directions = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+    
+    def count_live_neighbors(x, y):
+        count = 0
+        for dx, dy in directions:
+            nx, ny = x + dx, y + dy
+            if 0 <= nx < m and 0 <= ny < n:
+                count += board[nx][ny] & 1  # Count only the current state (0 or 1)
+        return count
+    
+    # Update board to the next state
+    for i in range(m):
+        for j in range(n):
+            live_neighbors = count_live_neighbors(i, j)
+            if board[i][j] == 1:
+                if live_neighbors < 2 or live_neighbors > 3:
+                    board[i][j] = 1  # Live cell dies
+                else:
+                    board[i][j] = 3  # Live cell remains alive
+            else:
+                if live_neighbors == 3:
+                    board[i][j] = 2  # Dead cell becomes alive
+    
+    # Convert the intermediate state to the final state
+    for i in range(m):
+        for j in range(n):
+            board[i][j] >>= 1  # Extract the next state (0 or 1)
+
+# Test Cases
+board1 = [[0,1,0],[0,0,1],[1,1,1],[0,0,0]]
+gameOfLife(board1)
+print(board1)  # Expected Output: [[0,0,0],[1,0,1],[0,1,1],[0,1,0]]
+
+board2 = [[1,1],[1,0]]
+gameOfLife(board2)
+print(board2)  # Expected Output: [[1,1],[1,1]]
